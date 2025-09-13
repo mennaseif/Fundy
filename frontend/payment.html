@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Fundy</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="logo">
+      <h2>Fundy</h2>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="user.html">My Profile</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><button id="logoutBtn" class="logout-btn">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+  <script src="../js/navbar.js"></script>
+
+  <main class="payment-container">
+    <h2>Complete Your Pledge</h2>
+    <div id="campaignDetails" class="campaign-summary"></div>
+
+    <form id="paymentForm" class="payment-form">
+      <label for="amount">Amount ($)</label>
+      <input type="number" id="amount" min="1" required>
+
+      <label for="method">Payment Method</label>
+      <select id="method" required>
+        <option value="credit">💳 Credit Card</option>
+        <option value="paypal">🅿️ PayPal</option>
+        <option value="wallet">📱 Wallet</option>
+      </select>
+
+      <button type="submit" class="btn-primary">Confirm Pledge</button>
+    </form>
+  </main>
+
+   <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="logo">
+          <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="logo">
+          <h2>Fundy</h2>
+        </div>
+        <p>Empowering creators and dreamers to bring their ideas to life with community support.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="create.html">Start a Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:support@fundy.com">support@fundy.com</a></p>
+        <p>Phone: +20 111 222 3333</p>
+        <p>Cairo, Egypt</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Fundy. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="../js/payment.js"></script>
+</body>
+</html>

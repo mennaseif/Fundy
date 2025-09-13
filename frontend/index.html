@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Fundy</title>
+</head>
+<body>
+  <!------------------------------------------------------ Nav ------------------------------------------------------->
+  <header class="navbar">
+    <div class="logo">
+      <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="logo">
+      <h2>Fundy</h2>
+    </div>
+
+    <nav>
+    <ul class="nav-links" id="navLinks">
+        <li><a id="homeLink" href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a id="loginLink" href="login.html">Login</a></li>
+        <li><a id="registerLink" href="register.html">Register</a></li>
+        <li><button id="logoutBtn" class="logout-btn" style="display:none;">Logout</button></li>
+      </ul>
+
+    </nav>
+
+    <div class="hamburger" id="hamburger">☰</div>
+
+  </header>
+
+  <!-------------------------------------------------- Hero Section ------------------------------------------------------->
+  <section class="hero" id="hero">
+    <section class="carousel" id="heroCarousel">
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <img src="../images/freepik_assistant_1757327827153.png" alt="Slide 1">
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <h1>Welcome to Fundy</h1>
+              <p>Empowering creators and dreamers to bring their ideas to life with community support.</p>
+              <a href="#" class="hero-btn" onclick="startCampaign()">Start a Campaign</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <img src="../images/map-lying-wooden-table.jpg" alt="Slide 2">
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <h1>Join the Movement</h1>
+              <p>Together, we can make innovative ideas a reality.</p>
+              <a href="#" class="hero-btn" onclick="startCampaign()">Start a Campaign</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <span class="active" onclick="goToSlide(0)"></span>
+        <span onclick="goToSlide(1)"></span>
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control prev" onclick="prevSlide()">❮</button>
+      <button class="carousel-control next" onclick="nextSlide()">❯</button>
+    </section>
+  </section>
+
+  <!------------------------------------------------------ Featured Campaigns ------------------------------------------------------->
+  <main class="campaigns-section">
+    <h2>Featured Campaigns</h2>
+    
+    <div class="filter-bar">
+      <input type="text" id="campaignSearch" placeholder="Search campaigns...">
+      
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Technology">Technology</option>
+        <option value="Education">Education</option>
+        <option value="Health">Health</option>
+        <option value="Art">Art</option>
+        <option value="Environment">Environment</option>
+      </select>
+
+      <select id="sortCampaigns">
+        <option value="">Sort By</option>
+        <option value="goalAsc">Goal: Low to High</option>
+        <option value="goalDesc">Goal: High to Low</option>
+        <option value="raised">Most Funded</option>
+      </select>
+    </div>
+
+    <div id="campaigns" class="campaigns-grid"></div>
+  </main>
+
+  <!------------------------------------------------------ Testimonial ------------------------------------------------------->
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <img src="../images/time-manage-business-portrait-confident-ready-good-looking-redhead-female-entrepreneur-with-freckles-standing-warm-stylish-sweater-holding-hands-crossed-chest-assured-pose-smiling.jpg" alt="Sarah" class="testimonial-img">
+        <p>"Fundy helped me bring my dream project to life! I reached my goal in just 2 weeks."</p>
+        <h4>- Sarah M., Campaign Creator</h4>
+      </div>
+      <div class="testimonial">
+        <img src="../images/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer.jpg" alt="Ahmed" class="testimonial-img">
+        <p>"As a backer, I love supporting creative ideas and seeing them succeed. Great platform!"</p>
+        <h4>- Ahmed K., Backer</h4>
+      </div>
+      <div class="testimonial">
+        <img src="../images/indoor-shot-serious-self-assured-teenage-girl-keeps-hands-crossed-wears-checkered-shirt.jpg" alt="Lina" class="testimonial-img">
+        <p>"The approval process was smooth and the community is amazing. Highly recommend."</p>
+        <h4>- Lina W., Creator</h4>
+      </div>
+    </div>
+  </section>
+
+  <!------------------------------------------------------ Footer ------------------------------------------------------->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="logo">
+          <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="logo">
+          <h2>Fundy</h2>
+        </div>
+        <p>Empowering creators and dreamers to bring their ideas to life with community support.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="create.html">Start a Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:support@fundy.com">support@fundy.com</a></p>
+        <p>Phone: +20 111 222 3333</p>
+        <p>Cairo, Egypt</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Fundy. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/campaign.js"></script>
+  <script src="../js/hero.js"></script>
+</body>
+</html>

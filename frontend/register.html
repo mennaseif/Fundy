@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+          <!------------------------------------------------------ Nav ------------------------------------------------------->
+
+ <header class="navbar">
+   <div class="logo">
+      <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="logo">
+      <h2>Fundy</h2>
+
+    </div>
+
+  <div class="hamburger" id="hamburger">
+    ☰
+  </div>
+
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+       <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" id="loginLink">Login</a></li>
+    </ul>
+  </nav>
+</header>
+<script src="../js/navbar.js"></script>
+
+        <!------------------------------------------------------ Register ------------------------------------------------------->
+
+   <div class="auth-container">
+  <form class="auth-form" id="registerForm">
+    <h2>Register</h2>
+    <label>Email</label>
+    <input type="email" id="registerEmail" required>
+    <label>Password</label>
+    <input type="password" id="registerPassword" required>
+    <button type="submit">Register</button>
+  </form>
+</div>
+        <!------------------------------------------------------ Footer ------------------------------------------------------->
+<footer class="footer-minimal">
+  <p>© 2025 Fundy</p>
+</footer>
+
+<script src="../js/auth.js"></script>
+
+
+    
+</body>
+</html>

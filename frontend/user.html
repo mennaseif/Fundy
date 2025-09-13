@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile - Fundy</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img class="fundy-logo" src="../images/2025-09-08_10-49-11.png" alt="Fundy logo" />
+      <h2>Fundy</h2>
+    </div>
+
+    <div class="hamburger" id="hamburger">☰</div>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" id="homeLink">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html" id="profileLink" style="display:none;">Profile</a></li>
+        <li><button id="logoutBtn" class="logout-btn" style="display:none;">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <script src="../js/navbar.js"></script>
+
+  <!-- MAIN PROFILE LAYOUT -->
+  <main class="profile-page container">
+    <!-- LEFT COLUMN -->
+    <section class="profile-left">
+      <!-- Profile Info -->
+      <div class="profile-card">
+        <h3>My Information</h3>
+        <form id="profileForm">
+          <label for="profileName">Full name</label>
+          <input id="profileName" type="text" required />
+
+          <label for="profileEmail">Email</label>
+          <input id="profileEmail" type="email" required />
+
+          <label for="profileAvatar">Avatar URL (optional)</label>
+          <input id="profileAvatar" type="text" placeholder="https://..." />
+
+          <button type="submit" class="btn primary">Update Profile</button>
+        </form>
+
+        <button id="changePasswordBtn" class="btn danger" style="margin-top:12px;">
+          Change Password
+        </button>
+      </div>
+
+      <!-- Pledges -->
+      <div class="profile-card" style="margin-top:20px;">
+        <h3>Your Pledges</h3>
+        <div id="userPledges" class="pledges-list">
+          <!-- pledges render here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <section class="profile-right">
+      <!-- Approved Campaigns -->
+      <div class="profile-card">
+        <h3>Your Approved Campaigns</h3>
+        <div id="userApprovedCampaigns" class="campaigns-grid">
+          <!-- campaigns render here -->
+        </div>
+      </div>
+
+      <!-- Create Campaign -->
+      <div class="profile-card" style="margin-top:20px;">
+        <h3>Create a Campaign</h3>
+        <form id="createForm">
+          <label>Title</label>
+          <input id="title" type="text" required />
+
+          <label>Description</label>
+          <textarea id="description" rows="3" required></textarea>
+
+          <label>Category</label>
+          <select id="category">
+            <option value="">Select category</option>
+            <option>Technology</option>
+            <option>Education</option>
+            <option>Health</option>
+            <option>Art</option>
+            <option>Environment</option>
+          </select>
+
+          <label>Funding Goal ($)</label>
+          <input id="goal" type="number" min="1" required />
+
+          <label>Deadline</label>
+          <input id="deadline" type="date" required />
+
+          <label>Image</label>
+          <input id="image" type="file" accept="image/*" />
+
+          <button type="submit" class="btn primary">Create Campaign</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/profile.js"></script>
+</body>
+</html>

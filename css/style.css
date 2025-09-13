@@ -1,0 +1,1127 @@
+/* ---------- Fundy Colors ---------- */
+:root {
+  --navbar-bg: #080E43;      /* Deep Navy */
+  --primary: #10B981;        /* Green */
+  --primary-hover: #059669;  /* Darker Green */
+  --bg: #F9FAFB;             /* Light background */
+  --card-bg: #FFFFFF;        /* White cards */
+  --text: #111827;           /* Text */
+  --text-dark: #1F2937;      /* Headings */
+  --text-muted: #4B5563;     /* Paragraphs */
+}
+
+/* ---------- Global Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  /*height: 1000vh;*/
+  padding-top:73px;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: var(--navbar-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  z-index:50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.fundy-logo {
+  width:50px;
+  padding-left: 20px;
+
+}
+
+h2{
+  display: inline;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: var(--primary);
+  font-weight: 500;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-hover);
+}
+
+/* Hamburger menu for mobile */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: var(--navbar-bg);
+    padding: 20px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary);
+  }
+}
+
+/* ---------- Hero Section ---------- */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(8, 14, 67, 0.65); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero h1, .hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.hero p, .hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #f3f4f6;
+}
+
+.hero-btn {
+  padding: 12px 25px;
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carousel-control.prev { 
+  left: 10px; 
+}
+
+.carousel-control.next { 
+  right: 10px; 
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-indicators span {
+  width: 12px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 50%;
+  display: block;
+  cursor: pointer;
+}
+
+.carousel-indicators .active {
+  background:var(--primary);
+}
+
+/* -------------------------------------Campaigns Section ------------------------------------------------------------ */
+.campaigns-section {
+  padding: 60px 20px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.campaign-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  color: white;
+}
+
+.edit-btn {
+  background: #3498db;
+}
+
+.edit-btn:hover {
+  background: #2980b9;
+}
+
+.delete-btn {
+  background: #e74c3c;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+.campaigns-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align:center;
+  margin:20px 0;
+  color: var(--navbar-bg);
+}
+
+.search-container {
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+  position: sticky;
+  top: 80px; 
+  z-index: 5;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.search-container input:focus {
+  border-color: var(--primary-hover);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.campaign-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.campaign-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.campaign-content {
+  padding: 15px;
+  text-align: left;
+}
+
+.campaign-content h3 {
+  margin-bottom: 10px;
+  color: var(--navbar-bg);
+  font-size: 1.2rem;
+}
+
+.campaign-content p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* -------------------------------------------- Filter Bar -------------------------------------------------------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto 40px auto;
+  max-width: 900px;
+}
+
+.filter-bar input,
+.filter-bar select {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+  border-color: var(--navbar-bg);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-bar input {
+  flex: 2;
+}
+
+.filter-bar select {
+  flex: 1;
+  background: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-bar input,
+  .filter-bar select {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------------------- Progress Bar ---------------------------------------------------------- */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* ---------- Buttons ---------- */
+button,
+.pledge-btn,
+.approve-btn,
+.reject-btn,
+.create-btn,
+.admin-table button,
+.approve-btn,
+.reject-btn,
+.delete-btn,
+.pledge-btn,
+.profile-container .btn,
+.payment-form button,
+.contact-form button  {
+  display: inline-block;
+  background:var(--primary);
+  padding: 8px 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: white;
+  margin: 5px 3px;
+}
+
+.reject-btn {
+  background: #EF4444;
+}
+
+.reject-btn:hover {
+  background: #B91C1C; 
+}
+
+button:hover,
+.approve-btn:hover,
+.admin-table .approve-btn:hover,
+.admin-table .unban-btn:hover,
+.approve-btn:hover,
+.pledge-btn:hover,
+.profile-container .btn:hover,
+.payment-form button:hover,
+.contact-form button:hover,
+.hero-btn:hover,
+.create-btn:hover  {
+  background: var(--primary-hover);
+}
+
+.approve-btn {
+  color: #fff;
+  padding: 8px 14px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-right: 5px;
+}
+
+.approve-btn:hover {
+  background: #218838;
+}
+
+.reject-btn {
+  background: #EF4444;
+  color: #fff;
+  padding: 8px 14px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-right: 5px;
+}
+
+.reject-btn:hover {
+  background: #DC2626;
+}
+
+.delete-btn {
+  background: #dc3545;
+  padding: 6px 12px;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-table th {
+  background: var(--navbar-bg);
+  color: white;
+}
+
+.admin-table tr:hover {
+  background: #f8f9fa;
+}
+
+/* ---------- Forms (Login / Register / Create) ---------- */
+.auth-container, .create-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.auth-form h2, .create-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--navbar-bg);
+}
+
+.auth-form label, .create-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.auth-form input, .create-form input, .create-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.auth-form input:focus, 
+.create-form input:focus,
+.create-form textarea:focus,
+.filter-bar select:focus,
+.filter-bar input:focus,
+.admin-search:focus {
+  border-color: var(--primary);
+}
+
+/* ---------------------------------------- Campaign Form --------------------------------------------------------- */
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+.campaign-form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.campaign-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--navbar-bg);
+}
+
+.campaign-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+  color: var(--navbar-bg);
+}
+
+.campaign-form input,
+.campaign-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.campaign-form input:focus,
+.campaign-form textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.campaign-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.create-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+/* ---------------------------------------- Admin Dashboard ------------------------------------------------------ */
+.admin-section {
+  max-width: 1000px;
+  margin: 120px auto 50px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.admin-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: var(--primary); 
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.admin-search {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.admin-search:focus {
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
+  outline: none;
+}
+
+/* ---------------------------------------------Admin Tables ----------------------------------------------------- */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.admin-table thead {
+  background: var(--navbar-bg);
+  color: white;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.admin-table button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.admin-table .approve-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.admin-table .reject-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.admin-table .reject-btn:hover {
+  background: #dc2626;
+}
+
+.admin-table .ban-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.admin-table .ban-btn:hover {
+  background: #d97706;
+}
+
+.admin-table .unban-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.approve-btn:hover {
+  transform: scale(1.05);
+}
+
+.pledge-btn {
+  color: #fff;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.pledge-btn:active {
+  transform: scale(0.95); 
+}
+
+/* ------------------------------------------------- Profile Page ------------------------------------------------------------- */
+.profile-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.profile-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--navbar-bg);
+}
+
+.profile-container section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.profile-container section h2 {
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+/* ----------------------------------------------------- Forms ---------------------------------------------------------------------- */
+.profile-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.profile-container input,
+.profile-container textarea,
+.profile-container select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border 0.2s;
+}
+
+.profile-container input:focus,
+.profile-container textarea:focus,
+.profile-container select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.profile-container .btn {
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background 0.3s;
+  text-align: center;
+}
+
+/* -------------------------------------------- Campaigns Grid ---------------------------------------------------------- */
+.user-campaigns #userCampaigns,
+.user-pledges #userPledges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.campaign-card, .pledge-card {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campaign-card:hover,
+.pledge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.campaign-card h3 {
+  margin-bottom: 8px;
+  color: var(--navbar-bg);
+}
+
+.campaign-card p,
+.pledge-card p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* ------------------------------------------------ Responsive ------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+  }
+}
+/* ------------------------------------------------- Payment ---------------------------------------------------------------- */
+.payment-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.payment-container h2 {
+  margin-bottom: 20px;
+  color: var(--navbar-bg);
+}
+
+.campaign-summary {
+  margin-bottom: 20px;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.payment-form input,
+.payment-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.payment-form button {
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* ------------------------------------------------------------------ About Us----------------------------------------------- */
+.about-section {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  line-height: 1.7;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  color: var(--navbar-bg);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-section h3 {
+  margin-top: 25px;
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+.about-section p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+.about-section ul {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.about-section li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+/* -------------------------------------------------------------- Contact Us -------------------------------------------------------- */
+.page-container {
+  max-width: 800px;
+  margin: 120px auto 50px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.page-container h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--primary); 
+}
+
+.page-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------- Contact Info List --------------------------------------------------- */
+.page-container ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.page-container li {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #374151;
+}
+
+.page-container a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-container a:hover {
+  color: var(--primary-hover); 
+  text-decoration: underline;
+}
+
+/* ---------- Contact Form ---------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.contact-form button {
+  padding: 12px 18px;
+  color: white;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+/* ------------------------------------------------ Responsive --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .page-container {
+    margin: 100px 15px;
+    padding: 20px;
+  }
+
+  .page-container h2 {
+    font-size: 1.5rem;
+  }
+}
+/* ----------------------------------------------------testimonial-----------------------------------------------------------*/
+.testimonials {
+  padding: 60px 20px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.testimonials h2 {
+  color: var(--primary);
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.testimonial:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.testimonial-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid var(--primary);
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.testimonial h4 {
+  color: var(--primary);
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* -----------------------------------------------------------Footer ------------------------------------------------------------------ */
+.footer {
+  background:var(--navbar-bg);
+  color: #f3f4f6;
+  padding: 40px 20px 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h2, .footer h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.footer p, .footer a {
+  color: #ddd;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--primary-hover);
+}
+
+.footer-about .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-about .fundy-logo {
+  height: 40px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin: 8px 0;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social img {
+  width: 25px;
+  height: 25px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.footer-social img:hover {
+  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(80%) saturate(344%) hue-rotate(121deg) brightness(90%) contrast(92%);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 30px;
+  font-size: 0.85rem;
+}
+
+.footer-minimal {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+
