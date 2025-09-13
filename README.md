@@ -40,7 +40,8 @@ fundy/
 │   ├─ auth.js
 │   ├─ payment.js
 │   └─ profile.js
-├─ frontend/
+├─ docs/
+|   |_ frontend/
 │   ├─ index.html
 │   ├─ about.html
 │   ├─ contact.html
