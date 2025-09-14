@@ -235,19 +235,19 @@ h2{
 }
 
 .edit-btn {
-  background: #3498db;
-}
-
-.edit-btn:hover {
-  background: #2980b9;
+  background-color: var(--primary);
 }
 
 .delete-btn {
-  background: #e74c3c;
+  background-color: #ef4444;
+}
+
+.edit-btn:hover {
+  background-color:var(--primary-hover);
 }
 
 .delete-btn:hover {
-  background: #c0392b;
+  background-color: #dc2626;
 }
 
 .campaigns-section h2 {
@@ -597,6 +597,215 @@ button:hover,
   border-radius: 8px;
   transition: background 0.3s;
 }
+
+/* ================= Profile Page ================= */
+.profile-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.profile-container h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--navbar-bg);
+  text-align: center;
+}
+
+/* Section Box */
+.profile-section,
+.profile-info,
+.my-campaigns,
+.create-campaign,
+.user-pledges {
+  background: #fff;
+  padding: 25px;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.profile-section h2,
+.profile-info h2,
+.my-campaigns h3,
+.create-campaign h3,
+.user-pledges h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--navbar-bg);
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Profile Form */
+#profileForm {
+  display: grid;
+  gap: 15px;
+  max-width: 500px;
+}
+
+#profileForm label {
+  font-weight: 600;
+  color: #444;
+}
+
+#profileForm input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.3s;
+}
+
+#profileForm input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+#profileForm button {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#profileForm button:hover {
+  background: var(--primary-hover);
+}
+
+/* Create Campaign Form */
+#createForm {
+  display: grid;
+  gap: 15px;
+  max-width: 600px;
+}
+
+#createForm label {
+  font-weight: 600;
+  color: #444;
+}
+
+#createForm input,
+#createForm textarea,
+#createForm select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.3s;
+}
+
+#createForm input:focus,
+#createForm textarea:focus,
+#createForm select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+#createForm button {
+  background: var(--primary);
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#createForm button:hover {
+  background: var(--primary-hover);
+}
+
+/* Campaign Grid */
+#profileCampaigns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.campaign-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-6px);
+}
+
+.campaign-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.campaign-content {
+  padding: 15px;
+  color: #333;
+}
+
+.campaign-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.campaign-actions .edit-btn {
+  background: #3b82f6;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.campaign-actions .delete-btn {
+  background: #ef4444;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.campaign-actions .edit-btn:hover {
+  background: #2563eb;
+}
+
+.campaign-actions .delete-btn:hover {
+  background: #dc2626;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* User Pledges */
+.user-pledges #userPledges {
+  display: grid;
+  gap: 15px;
+}
+
+.user-pledges .pledge-card {
+  background: #f9fafb;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
 
 /* ---------------------------------------- Admin Dashboard ------------------------------------------------------ */
 .admin-section {

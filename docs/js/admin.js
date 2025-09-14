@@ -23,9 +23,7 @@ async function loadUsers() {
           <td>${u.role || "user"}</td>
           <td>${u.isActive ? "✅ Active" : "🚫 Banned"}</td>
           <td>
-            <button class="ban-btn" onclick="toggleUserStatus(${u.id}, ${
-          u.isActive
-        })">
+            <button class="ban-btn" onclick="toggleUserStatus(${u.id}, ${u.isActive})">
               ${u.isActive ? "Ban" : "Unban"}
             </button>
           </td>
@@ -69,7 +67,7 @@ async function loadCampaigns() {
     });
     const campaigns = await res.json();
 
-/*///////////////////////////////////////////////////////////////// Pending Campaigns ////////////////////////////////////////////*/
+    // ---------------- Pending Campaigns ----------------
     const pendingTbody = document.querySelector("#campaignsTable tbody");
     pendingTbody.innerHTML = campaigns
       .filter(c => !c.isApproved)
@@ -80,14 +78,14 @@ async function loadCampaigns() {
           <td>${c.creatorId}</td>
           <td>$${c.goal}</td>
           <td>
-            <button class="approve-btn" onclick="approveCampaign(${c.id}, true)">Approve</button>
-            <button class="reject-btn" onclick="approveCampaign(${c.id}, false)">Reject</button>
-            <button class="reject-btn" onclick="deleteCampaign(${c.id})">Delete</button>
+            <button class="approve-btn" onclick="approveCampaign(${c.id})">Approve</button>
+            <button class="reject-btn" onclick="rejectCampaign(${c.id})">Reject</button>
           </td>
         </tr>`
       )
       .join("");
 
+    // ---------------- All Campaigns ----------------
     const allTbody = document.querySelector("#allCampaignsTable tbody");
     allTbody.innerHTML = campaigns
       .map(
@@ -105,44 +103,69 @@ async function loadCampaigns() {
   }
 }
 
-/*////////////////////////////////////////////// Approve / Reject Campaign //////////////////////////////////////////////////////*/
-async function approveCampaign(campaignId, isApproved) {
-  try {
-    await fetch(`${API}/campaigns/${campaignId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ isApproved })
-    });
-
-    Swal.fire(
-      "Updated",
-      isApproved ? "Campaign Approved ✅" : "Campaign Rejected ❌",
-      isApproved ? "success" : "info"
-    );
-
-    loadCampaigns(); // refresh campaigns
-  } catch (err) {
-    console.error("Error approving campaign:", err);
+/*////////////////////////////////////////////// Approve Campaign //////////////////////////////////////////////////////*/
+async function approveCampaign(campaignId) {
+  if (!token) {
+    Swal.fire("Unauthorized", "You must be logged in as admin.", "error");
+    return;
   }
+
+  const res = await fetch(`${API}/campaigns/${campaignId}`, {
+    method: "PATCH",
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({ isApproved: true })
+  });
+
+  if (!res.ok) {
+    Swal.fire("Error", "Could not approve campaign", "error");
+    return;
+  }
+
+  Swal.fire("Approved ✅", "Campaign has been approved.", "success");
+
+  loadCampaigns();
 }
 
-/*///////////////////////////////////////////////// Delete Campaign //////////////////////////////////////*/
-async function deleteCampaign(campaignId) {
-  try {
-    await fetch(`${API}/campaigns/${campaignId}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    Swal.fire("Deleted", "Campaign has been removed 🗑️", "success");
-    loadCampaigns();
-  } catch (err) {
-    console.error("Error deleting campaign:", err);
+/*////////////////////////////////////////////// Reject Campaign //////////////////////////////////////////////*/
+async function rejectCampaign(campaignId) {
+  if (!token) {
+    Swal.fire("Unauthorized", "You must be logged in as admin.", "error");
+    return;
   }
+
+  const confirm = await Swal.fire({
+    title: "Reject Campaign?",
+    text: "This will mark the campaign as rejected.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, reject it",
+    cancelButtonText: "Cancel"
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  const res = await fetch(`${API}/campaigns/${campaignId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ isApproved: false, rejected: true })
+  });
+
+  if (!res.ok) {
+    Swal.fire("Error", "Could not reject campaign", "error");
+    return;
+  }
+
+  Swal.fire("Rejected ❌", "Campaign has been marked as rejected.", "success");
+  loadCampaigns();
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   loadUsers();

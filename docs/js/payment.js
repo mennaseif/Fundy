@@ -7,6 +7,22 @@ const campaignDetailsDiv = document.getElementById("campaignDetails");
 
 let campaign = null;
 
+/*///////////////////////////////////////////////////////// Check login first /////////////////////////////////////////////////////////*/
+const token = localStorage.getItem("token");
+const user = JSON.parse(localStorage.getItem("user") || "null");
+
+if (!token || !user) {
+  Swal.fire({
+    icon: "warning",
+    title: "Login Required",
+    text: "You must log in before pledging to a campaign."
+  }).then(() => {
+    window.location.href = "login.html";
+  });
+} else {
+  loadCampaign();
+}
+
 /*///////////////////////////////////////////////////////// Load campaign info /////////////////////////////////////////////////////////*/
 async function loadCampaign() {
   const res = await fetch(`${API}/campaigns/${campaignId}`);
@@ -36,18 +52,8 @@ async function loadCampaign() {
 }
 
 /*//////////////////////////////////////////////////// Handle Payment ////////////////////////////////////////////////////////*/
-paymentForm.addEventListener("submit", async (e) => {
+paymentForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user") || "null");
-
-  if (!token || !user) {
-    Swal.fire("Unauthorized", "You must log in to pledge.", "error").then(() => {
-      window.location.href = "login.html";
-    });
-    return;
-  }
 
   const amount = parseFloat(document.getElementById("amount").value);
   const method = document.getElementById("method").value;
@@ -80,6 +86,3 @@ paymentForm.addEventListener("submit", async (e) => {
     window.location.href = "index.html";
   });
 });
-
-
-loadCampaign();

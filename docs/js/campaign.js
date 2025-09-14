@@ -1,4 +1,3 @@
-/*///////////////////////////////////////////////////////Vars////////////////////////////////////////////////////////*/
 const API = "http://localhost:3000"; 
 const campaignsDiv = document.getElementById("campaigns");
 const token = localStorage.getItem("token");
@@ -9,7 +8,7 @@ const sortSelect = document.getElementById("sortCampaigns");
 
 let allCampaigns = [];
 
-/*///////////////////////////////////////////// Load Campaigns /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////// Load Campaigns //////////////////////////////////////////////////////*/
 async function loadCampaigns() {
   let url = `${API}/campaigns`;
 
@@ -20,10 +19,17 @@ async function loadCampaigns() {
   const res = await fetch(url);
   allCampaigns = await res.json();
 
+  // Filter out expired/finished campaigns before rendering
+  const today = new Date().toISOString().split("T")[0];
+  allCampaigns = allCampaigns.filter(c => {
+    const raised = c.pledges ? c.pledges.reduce((sum, p) => sum + p.amount, 0) : 0;
+    return raised < c.goal && (!c.deadline || c.deadline >= today);
+  });
+
   applyFiltersAndRender();
 }
 
-/*////////////////////////////////////////////////// Apply Filters + Sorting //////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////// Apply Filters + Sorting //////////////////////////////////////////*/
 function applyFiltersAndRender() {
   let filtered = [...allCampaigns];
 
@@ -58,7 +64,7 @@ function applyFiltersAndRender() {
   renderCampaigns(filtered);
 }
 
-/* ///////////////////////////////////////// Render Campaigns //////////////////////////////////////////////////////////*/
+/* ///////////////////////////////////////// Render Campaigns //////////////////////////////////////////////////////*/
 function renderCampaigns(campaigns) {
   if (!campaigns.length) {
     campaignsDiv.innerHTML = "<p>No campaigns available.</p>";
@@ -82,16 +88,21 @@ function renderCampaigns(campaigns) {
           </div>
           <p><strong>Goal:</strong> $${c.goal} | <strong>Raised:</strong> $${raised}</p>
 
-          ${user && user.role === "admin" 
-            ? `
-              <p><strong>Status:</strong> ${c.isApproved ? "✅ Approved" : " Pending"}</p>
-              <button class="approve-btn" onclick="approveCampaign(${c.id}, true)">Approve</button>
-              <button class="reject-btn" onclick="approveCampaign(${c.id}, false)">Reject</button>
-            `
-            : c.isApproved 
-              ? `<button class="pledge-btn" onclick="pledge(${c.id}, '${c.title}')">Pledge</button>`
-              : "<p> Waiting for approval</p>"
-          }
+         ${user && user.role === "admin" 
+         ? `
+         <p><strong>Status:</strong> ${c.isApproved ? "✅ Approved" : " Pending"}</p>
+        ${c.isApproved 
+        ? `<button class="delete-btn" onclick="deleteCampaign(${c.id})">Delete</button>` 
+        : `
+        <button class="approve-btn" onclick="approveCampaign(${c.id}, true)">Approve</button>
+        <button class="reject-btn" onclick="deleteCampaign(${c.id})">Reject</button>
+        `
+        }
+       `
+        : c.isApproved 
+        ? `<a href="payment.html?id=${c.id}&title=${encodeURIComponent(c.title)}" class="pledge-btn">Pledge</a>`
+       : "<p> Waiting for approval</p>"
+       }
         </div>
       </div>
     `;
@@ -114,39 +125,70 @@ function pledge(campaignId, campaignTitle) {
     return;
   }
 
-  // Logged in → redirect to payment page
   window.location.href = `payment.html?id=${campaignId}&title=${encodeURIComponent(campaignTitle)}`;
 }
 
-if (searchInput) {
-  searchInput.addEventListener("input", applyFiltersAndRender);
-}
 
-categoryFilter?.addEventListener("change", applyFiltersAndRender);
-sortSelect?.addEventListener("change", applyFiltersAndRender);
-
-/*//////////////////////////////////////////////// Approve / Reject (Admin only) ////////////////////////////////////////////////////*/
-
+/*//////////////////////////////////////////////// Approve / Reject (Admin only) //////////////////////////////////*/
 async function approveCampaign(campaignId, isApproved) {
-  if (!token) {
+  if (!token || !user || user.role !== "admin") {
     Swal.fire("Unauthorized", "You must be logged in as admin.", "error");
     return;
   }
 
-  await fetch(`${API}/campaigns/${campaignId}`, {
+  const res = await fetch(`${API}/campaigns/${campaignId}`, {
     method: "PATCH",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({ isApproved })
   });
 
+  if (!res.ok) {
+    Swal.fire("Error", "Could not update campaign", "error");
+    return;
+  }
+
   Swal.fire(
     "Updated",
     isApproved ? "Campaign Approved ✅" : "Campaign Rejected ❌",
     isApproved ? "success" : "info"
   );
+
+  loadCampaigns();
+}
+
+/*//////////////////////////////////////////////// Delete Campaign (Admin only) ////////////////////////////////////*/
+async function deleteCampaign(campaignId) {
+  if (!token || !user || user.role !== "admin") {
+    Swal.fire("Unauthorized", "You must be logged in as admin.", "error");
+    return;
+  }
+
+  const confirm = await Swal.fire({
+    title: "Are you sure?",
+    text: "This campaign will be permanently deleted.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it",
+    cancelButtonText: "Cancel"
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  const res = await fetch(`${API}/campaigns/${campaignId}`, {
+    method: "DELETE",
+    headers: { "Authorization": `Bearer ${token}` }
+  });
+
+  if (!res.ok) {
+    Swal.fire("Error", "Could not delete campaign", "error");
+    return;
+  }
+
+  Swal.fire("Deleted", "Campaign has been removed.", "success");
+
   loadCampaigns();
 }
 
