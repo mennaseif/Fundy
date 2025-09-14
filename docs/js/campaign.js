@@ -19,7 +19,7 @@ async function loadCampaigns() {
   const res = await fetch(url);
   allCampaigns = await res.json();
 
-  // Filter out expired/finished campaigns before rendering
+  // Remove expired / finished campaigns
   const today = new Date().toISOString().split("T")[0];
   allCampaigns = allCampaigns.filter(c => {
     const raised = c.pledges ? c.pledges.reduce((sum, p) => sum + p.amount, 0) : 0;
@@ -33,21 +33,25 @@ async function loadCampaigns() {
 function applyFiltersAndRender() {
   let filtered = [...allCampaigns];
 
-  if (searchInput) {
-    const term = searchInput.value.toLowerCase();
-    if (term) {
-      filtered = filtered.filter(c =>
-        c.title.toLowerCase().includes(term) ||
-        c.description.toLowerCase().includes(term)
-      );
-    }
-  }
+  // Search
+  if (searchInput && searchInput.value.trim()) {
+  const term = searchInput.value.toLowerCase().trim();
+  const keywords = term.split(/\s+/); 
 
+  filtered = filtered.filter(c => {
+    const text = `${c.title} ${c.description} ${c.category || ""}`.toLowerCase();
+    return keywords.every(kw => text.includes(kw));
+  });
+}
+
+
+  // Category
   if (categoryFilter && categoryFilter.value) {
     filtered = filtered.filter(c => c.category === categoryFilter.value);
   }
 
-  if (sortSelect) {
+  // Sorting
+  if (sortSelect && sortSelect.value) {
     if (sortSelect.value === "goalAsc") {
       filtered.sort((a, b) => a.goal - b.goal);
     } else if (sortSelect.value === "goalDesc") {
@@ -88,21 +92,21 @@ function renderCampaigns(campaigns) {
           </div>
           <p><strong>Goal:</strong> $${c.goal} | <strong>Raised:</strong> $${raised}</p>
 
-         ${user && user.role === "admin" 
-         ? `
-         <p><strong>Status:</strong> ${c.isApproved ? "✅ Approved" : " Pending"}</p>
-        ${c.isApproved 
-        ? `<button class="delete-btn" onclick="deleteCampaign(${c.id})">Delete</button>` 
-        : `
-        <button class="approve-btn" onclick="approveCampaign(${c.id}, true)">Approve</button>
-        <button class="reject-btn" onclick="deleteCampaign(${c.id})">Reject</button>
-        `
-        }
-       `
-        : c.isApproved 
-        ? `<a href="payment.html?id=${c.id}&title=${encodeURIComponent(c.title)}" class="pledge-btn">Pledge</a>`
-       : "<p> Waiting for approval</p>"
-       }
+          ${user && user.role === "admin" 
+            ? `
+              <p><strong>Status:</strong> ${c.isApproved ? "✅ Approved" : " Pending"}</p>
+              ${c.isApproved 
+                ? `<button class="delete-btn" onclick="deleteCampaign(${c.id})">Delete</button>` 
+                : `
+                  <button class="approve-btn" onclick="approveCampaign(${c.id}, true)">Approve</button>
+                  <button class="reject-btn" onclick="deleteCampaign(${c.id})">Reject</button>
+                `
+              }
+            `
+            : c.isApproved 
+              ? `<a href="payment.html?id=${c.id}&title=${encodeURIComponent(c.title)}" class="pledge-btn">Pledge</a>`
+              : "<p> Waiting for approval</p>"
+          }
         </div>
       </div>
     `;
@@ -127,7 +131,6 @@ function pledge(campaignId, campaignTitle) {
 
   window.location.href = `payment.html?id=${campaignId}&title=${encodeURIComponent(campaignTitle)}`;
 }
-
 
 /*//////////////////////////////////////////////// Approve / Reject (Admin only) //////////////////////////////////*/
 async function approveCampaign(campaignId, isApproved) {
@@ -192,4 +195,10 @@ async function deleteCampaign(campaignId) {
   loadCampaigns();
 }
 
-loadCampaigns();
+document.addEventListener("DOMContentLoaded", () => {
+  loadCampaigns();
+
+  searchInput?.addEventListener("input", applyFiltersAndRender);
+  categoryFilter?.addEventListener("change", applyFiltersAndRender);
+  sortSelect?.addEventListener("change", applyFiltersAndRender);
+});

@@ -161,6 +161,12 @@
           "amount": 500,
           "paymentMethod": "credit",
           "date": "2025-09-14"
+        },
+        {
+          "userId": 17,
+          "amount": 500,
+          "paymentMethod": "credit",
+          "date": "2025-09-14"
         }
       ]
     },

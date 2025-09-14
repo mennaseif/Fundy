@@ -211,6 +211,79 @@ h2{
   background:var(--primary);
 }
 
+/* ---------- Hero Section Responsive ---------- */
+@media (max-width: 1024px) {
+  .carousel {
+    height: 60vh;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 50vh;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  .carousel-control {
+    font-size: 1.5rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 40vh;
+  }
+
+  .hero-content {
+    padding: 10px;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .carousel-indicators {
+    gap: 6px;
+  }
+
+  .carousel-indicators span {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+
 /* -------------------------------------Campaigns Section ------------------------------------------------------------ */
 .campaigns-section {
   padding: 60px 20px;
