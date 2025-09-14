@@ -29,19 +29,7 @@ Fundy is a crowdfunding platform that empowers creators and dreamers to bring th
 ## Project Structure 📂
 
 fundy/
-├─ css/
-│   └─ style.css
-├─ images/
-├─ js/
-│   ├─ campaign.js
-│   ├─ hero.js
-│   ├─ navbar.js
-│   ├─ admin.js
-│   ├─ auth.js
-│   ├─ payment.js
-│   └─ profile.js
 ├─ docs/
-|   |_ frontend/
 │   ├─ index.html
 │   ├─ about.html
 │   ├─ contact.html
@@ -50,13 +38,26 @@ fundy/
 │   ├─ register.html
 │   ├─ payment.html
 │   ├─ profile.html
-│   └─ user.html
+│   ├─ user.html
+│   ├─ css/
+│   │   └─ style.css
+│   ├─ js/
+│   │   ├─ campaign.js
+│   │   ├─ hero.js
+│   │   ├─ navbar.js
+│   │   ├─ admin.js
+│   │   ├─ auth.js
+│   │   ├─ payment.js
+│   │   └─ profile.js
+│   └─ images/
+│       
 ├─ server.js
 ├─ db.json
 ├─ package.json
 ├─ .gitignore
 ├─ node_modules/
 └─ README.md
+
 
 
 ---
