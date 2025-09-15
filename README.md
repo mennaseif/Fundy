@@ -91,7 +91,7 @@ Sort Campaigns: Sort by goal or amount raised using the sort dropdown
 
 Create Campaign: Log in and use the create campaign page
 
-Admin Actions: Admin users can approve or reject campaigns
+Admin Actions: Admin users can approve or reject campaigns and Ban and Unban users
 
 Live Demo:https://mennaseif.github.io/Fundy/
 
