@@ -25,14 +25,14 @@
       "email": "mona@email.com",
       "password": "$2a$10$h/X26qD4aOjKYjAY2Gzu7eYX4URaHJzy5kd.39Rxwo//K2wPRVqM.",
       "role": "user",
-      "isActive": true,
+      "isActive": false,
       "id": 4
     },
     {
       "email": "gamal@email.com",
       "password": "$2a$10$GVhbi1.yeYnK/MUOY.vwDOIJH0mx7AEzaVFi6K396635nQb9irAp6",
       "role": "admin",
-      "isActive": true,
+      "isActive": false,
       "id": 5
     },
     {
@@ -139,6 +139,18 @@
         {
           "userId": 19,
           "amount": 200,
+          "paymentMethod": "credit",
+          "date": "2025-09-14"
+        },
+        {
+          "userId": 17,
+          "amount": 100,
+          "paymentMethod": "credit",
+          "date": "2025-09-14"
+        },
+        {
+          "userId": 17,
+          "amount": 100,
           "paymentMethod": "credit",
           "date": "2025-09-14"
         }

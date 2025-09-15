@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginLink) loginLink.style.display = "none";
     if (registerLink) registerLink.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
-
     if (profileLink) profileLink.style.display = "inline-block";
 
     if (homeLink) {

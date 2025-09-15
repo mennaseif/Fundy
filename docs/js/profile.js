@@ -3,6 +3,23 @@ const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user") || "null");
 const profileCampaignsDiv = document.getElementById("profileCampaigns");
 
+/*/////////////////////////////////////////////////// Guard ////////////////////////////////////////////////////////*/
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+
+  if (!token || !user) {
+    Swal.fire({
+      icon: "error",
+      title: "Access Denied",
+      text: "You must log in to access this page."
+    }).then(() => {
+      window.location.href = "login.html";
+    });
+    return;
+  }
+});
+
 /*///////////////////////////////////////////////////////// Create Campaign ////////////////////////////////////////////////////*/
 const createForm = document.getElementById("createForm");
 
@@ -28,7 +45,6 @@ if (createForm) {
       deadline: document.getElementById("deadline").value,
       creatorId: user.id,
       isApproved: false, 
-      rewards: [],
       category: document.getElementById("category").value,
     };
 
@@ -135,7 +151,6 @@ async function editCampaign(id, currentGoal, currentDeadline) {
 
   if (!formValues) return;
 
-  // Update in DB
   const res = await fetch(`${API}/campaigns/${id}`, {
     method: "PATCH",
     headers: {
@@ -153,26 +168,22 @@ async function editCampaign(id, currentGoal, currentDeadline) {
     return;
   }
 
-  // Update instantly in DOM without full reload
   const card = document.querySelector(`.campaign-card button[onclick*="editCampaign(${id},"]`)?.closest(".campaign-card");
   if (card) {
     const goalEl = card.querySelector("p strong:nth-child(1)").parentNode;
     const deadlineEl = card.querySelector("p:nth-of-type(3)");
 
-    // Get raised amount again (from card text)
     const raisedText = goalEl.textContent.match(/Raised:\s*\$([0-9]+)/);
     const raised = raisedText ? parseInt(raisedText[1]) : 0;
 
-    // Update values in card
     goalEl.innerHTML = `<strong>Goal:</strong> $${formValues.newGoal} | <strong>Raised:</strong> $${raised}`;
     deadlineEl.innerHTML = `<strong>Deadline:</strong> ${formValues.newDeadline}`;
 
-    // Update progress bar
     const progress = Math.min((raised / formValues.newGoal) * 100, 100);
     card.querySelector(".progress").style.width = `${progress}%`;
   }
 
-  Swal.fire("Updated ✅", "Your campaign was updated successfully.", "success");
+  Swal.fire("Updated", "Your campaign was updated successfully.", "success");
 }
 
 /*///////////////////////////////////////////////////////// Delete Campaign ////////////////////////////////////////////////////*/
@@ -246,7 +257,6 @@ async function loadUserPledges() {
       `<p class="empty-message"> Error loading pledges.</p>`;
   }
 }
-
 
 loadProfileCampaigns();
 loadUserPledges();

@@ -19,7 +19,7 @@ async function loadCampaigns() {
   const res = await fetch(url);
   allCampaigns = await res.json();
 
-  // Remove expired / finished campaigns
+  // Remove expired and finished campaigns
   const today = new Date().toISOString().split("T")[0];
   allCampaigns = allCampaigns.filter(c => {
     const raised = c.pledges ? c.pledges.reduce((sum, p) => sum + p.amount, 0) : 0;
@@ -132,7 +132,7 @@ function pledge(campaignId, campaignTitle) {
   window.location.href = `payment.html?id=${campaignId}&title=${encodeURIComponent(campaignTitle)}`;
 }
 
-/*//////////////////////////////////////////////// Approve / Reject (Admin only) //////////////////////////////////*/
+/*//////////////////////////////////////////////// Approve //////////////////////////////////*/
 async function approveCampaign(campaignId, isApproved) {
   if (!token || !user || user.role !== "admin") {
     Swal.fire("Unauthorized", "You must be logged in as admin.", "error");
@@ -155,14 +155,14 @@ async function approveCampaign(campaignId, isApproved) {
 
   Swal.fire(
     "Updated",
-    isApproved ? "Campaign Approved ✅" : "Campaign Rejected ❌",
+    isApproved ? "Campaign Approved " : "Campaign Rejected ",
     isApproved ? "success" : "info"
   );
 
   loadCampaigns();
 }
 
-/*//////////////////////////////////////////////// Delete Campaign (Admin only) ////////////////////////////////////*/
+/*//////////////////////////////////////////////// Delete Campaign ////////////////////////////////////*/
 async function deleteCampaign(campaignId) {
   if (!token || !user || user.role !== "admin") {
     Swal.fire("Unauthorized", "You must be logged in as admin.", "error");

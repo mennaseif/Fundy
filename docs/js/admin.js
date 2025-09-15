@@ -1,6 +1,35 @@
 const API = "http://localhost:3000";
 const token = localStorage.getItem("token");
 
+
+/*////////////////////////////////////////////////////// Guard /////////////////////////////////////////////////////////////////*/
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+
+  if (!token || !user) {
+    Swal.fire({
+      icon: "error",
+      title: "Access Denied",
+      text: "You must log in to access this page."
+    }).then(() => {
+      window.location.href = "login.html";
+    });
+    return;
+  }
+
+  if (window.location.pathname.includes("admin.html") && user.role !== "admin") {
+    Swal.fire({
+      icon: "error",
+      title: "Unauthorized",
+      text: "You do not have permission to access the Admin Dashboard."
+    }).then(() => {
+      window.location.href = "index.html";
+    });
+    return;
+  }
+});
+
 /*/////////////////////////////////////////////// Load Users ///////////////////////////////////////////////////*/
 async function loadUsers() {
   try {
@@ -21,7 +50,7 @@ async function loadUsers() {
         <tr>
           <td>${u.email}</td>
           <td>${u.role || "user"}</td>
-          <td>${u.isActive ? "✅ Active" : "🚫 Banned"}</td>
+          <td>${u.isActive ? " Active" : " Banned"}</td>
           <td>
             <button class="ban-btn" onclick="toggleUserStatus(${u.id}, ${u.isActive})">
               ${u.isActive ? "Ban" : "Unban"}
@@ -49,7 +78,7 @@ async function toggleUserStatus(userId, isActive) {
 
     Swal.fire(
       "Updated",
-      isActive ? "User has been banned 🚫" : "User has been unbanned ✅",
+      isActive ? "User has been banned " : "User has been unbanned ",
       "success"
     );
 
@@ -67,7 +96,6 @@ async function loadCampaigns() {
     });
     const campaigns = await res.json();
 
-    // ---------------- Pending Campaigns ----------------
     const pendingTbody = document.querySelector("#campaignsTable tbody");
     pendingTbody.innerHTML = campaigns
       .filter(c => !c.isApproved)
@@ -85,7 +113,7 @@ async function loadCampaigns() {
       )
       .join("");
 
-    // ---------------- All Campaigns ----------------
+    /*///////////////////////////////////////////////////// All Campaigns /////////////////////////////////////////////////////*/
     const allTbody = document.querySelector("#allCampaignsTable tbody");
     allTbody.innerHTML = campaigns
       .map(
@@ -94,7 +122,7 @@ async function loadCampaigns() {
           <td>${c.title}</td>
           <td>${c.creatorId}</td>
           <td>$${c.goal}</td>
-          <td>${c.isApproved ? "✅ Approved" : " Pending"}</td>
+          <td>${c.isApproved ? " Approved" : " Pending"}</td>
         </tr>`
       )
       .join("");
@@ -161,11 +189,9 @@ async function rejectCampaign(campaignId) {
     return;
   }
 
-  Swal.fire("Rejected ❌", "Campaign has been marked as rejected.", "success");
+  Swal.fire("Rejected ", "Campaign has been marked as rejected.", "success");
   loadCampaigns();
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   loadUsers();

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         Swal.fire({
           icon: "success",
-          title: "Welcome to Fundy 🎉",
+          title: "Welcome to Fundy",
           text: "Your account has been created!"
         }).then(() => {
           window.location.href = freshUser.role === "admin" ? "admin.html" : "profile.html"; 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         Swal.fire({
           icon: "success",
-          title: "Login Successful ✅",
+          title: "Login Successful ",
           text: "Welcome back!"
         }).then(() => {
           window.location.href = freshUser.role === "admin" ? "admin.html" : "profile.html";

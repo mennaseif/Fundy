@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       Swal.fire({
         icon: "warning",
-        title: "Login required ⚠️",
+        title: "Login required ",
         text: "You must login first to start a campaign.",
         confirmButtonColor: "#10B981"
       }).then(() => {

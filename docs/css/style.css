@@ -45,7 +45,6 @@ body {
 .fundy-logo {
   width:50px;
   padding-left: 20px;
-
 }
 
 h2{
@@ -283,7 +282,6 @@ h2{
   }
 }
 
-
 /* -------------------------------------Campaigns Section ------------------------------------------------------------ */
 .campaigns-section {
   padding: 60px 20px;
@@ -367,11 +365,9 @@ h2{
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .campaign-card:hover {
-  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
@@ -516,7 +512,6 @@ button:hover,
   color: #fff;
   padding: 8px 14px;
   font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
   margin-right: 5px;
 }
 
@@ -529,7 +524,6 @@ button:hover,
   color: #fff;
   padding: 8px 14px;
   font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
   margin-right: 5px;
 }
 
@@ -540,7 +534,6 @@ button:hover,
 .delete-btn {
   background: #dc3545;
   padding: 6px 12px;
-  transition: 0.3s;
 }
 
 .delete-btn:hover {
@@ -668,7 +661,6 @@ button:hover,
   padding: 12px;
   font-size: 1.1rem;
   border-radius: 8px;
-  transition: background 0.3s;
 }
 
 /* ================= Profile Page ================= */
@@ -685,7 +677,6 @@ button:hover,
   text-align: center;
 }
 
-/* Section Box */
 .profile-section,
 .profile-info,
 .my-campaigns,
@@ -710,7 +701,6 @@ button:hover,
   padding-bottom: 6px;
 }
 
-/* Profile Form */
 #profileForm {
   display: grid;
   gap: 15px;
@@ -727,7 +717,6 @@ button:hover,
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.95rem;
-  transition: border 0.3s;
 }
 
 #profileForm input:focus {
@@ -743,14 +732,12 @@ button:hover,
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 #profileForm button:hover {
   background: var(--primary-hover);
 }
 
-/* Create Campaign Form */
 #createForm {
   display: grid;
   gap: 15px;
@@ -769,7 +756,6 @@ button:hover,
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.95rem;
-  transition: border 0.3s;
 }
 
 #createForm input:focus,
@@ -787,14 +773,12 @@ button:hover,
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 #createForm button:hover {
   background: var(--primary-hover);
 }
 
-/* Campaign Grid */
 #profileCampaigns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -806,11 +790,6 @@ button:hover,
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.campaign-card:hover {
-  transform: translateY(-6px);
 }
 
 .campaign-card img {
@@ -837,7 +816,6 @@ button:hover,
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .campaign-actions .delete-btn {
@@ -847,7 +825,6 @@ button:hover,
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .campaign-actions .edit-btn:hover {
@@ -865,7 +842,6 @@ button:hover,
   color: #666;
 }
 
-/* User Pledges */
 .user-pledges #userPledges {
   display: grid;
   gap: 15px;
@@ -878,7 +854,6 @@ button:hover,
   border-radius: 8px;
   font-size: 0.95rem;
 }
-
 
 /* ---------------------------------------- Admin Dashboard ------------------------------------------------------ */
 .admin-section {
@@ -905,7 +880,6 @@ button:hover,
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border 0.3s, box-shadow 0.3s;
 }
 
 .admin-search:focus {
@@ -940,7 +914,6 @@ button:hover,
   padding: 6px 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.3s;
 }
 
 .admin-table .approve-btn {
@@ -971,21 +944,12 @@ button:hover,
   color: white;
 }
 
-.approve-btn:hover {
-  transform: scale(1.05);
-}
-
 .pledge-btn {
   color: #fff;
   padding: 10px 18px;
   font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
   display: inline-block;
   margin-top: 10px;
-}
-
-.pledge-btn:active {
-  transform: scale(0.95); 
 }
 
 /* ------------------------------------------------- Profile Page ------------------------------------------------------------- */
@@ -1036,7 +1000,6 @@ button:hover,
   border-radius: 8px;
   font-size: 1rem;
   width: 100%;
-  transition: border 0.2s;
 }
 
 .profile-container input:focus,
@@ -1051,7 +1014,6 @@ button:hover,
   padding: 12px;
   border-radius: 8px;
   font-size: 1rem;
-  transition: background 0.3s;
   text-align: center;
 }
 
@@ -1068,12 +1030,10 @@ button:hover,
   border-radius: 10px;
   padding: 15px;
   border: 1px solid #e5e7eb;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .campaign-card:hover,
 .pledge-card:hover {
-  transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
@@ -1239,7 +1199,6 @@ button:hover,
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border 0.3s, box-shadow 0.3s;
 }
 
 .contact-form input:focus,
@@ -1253,7 +1212,6 @@ button:hover,
   padding: 12px 18px;
   color: white;
   border-radius: 8px;
-  transition: background 0.3s;
 }
 
 /* ------------------------------------------------ Responsive --------------------------------------------------------- */
@@ -1293,12 +1251,10 @@ button:hover,
   padding: 25px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .testimonial:hover {
-  transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
@@ -1383,12 +1339,6 @@ button:hover,
   width: 25px;
   height: 25px;
   filter: brightness(0) invert(1);
-  transition: transform 0.2s;
-}
-
-.footer-social img:hover {
-  transform: scale(1.1);
-  filter: brightness(0) saturate(100%) invert(48%) sepia(80%) saturate(344%) hue-rotate(121deg) brightness(90%) contrast(92%);
 }
 
 .footer-bottom {
