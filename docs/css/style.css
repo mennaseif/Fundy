@@ -1,4 +1,4 @@
-/* ---------- Fundy Colors ---------- */
+/* ------------------------------------------ Fundy Colors ------------------------------------------------- */
 :root {
   --navbar-bg: #080E43;      /* Deep Navy */
   --primary: #10B981;        /* Green */
@@ -10,7 +10,7 @@
   --text-muted: #4B5563;     /* Paragraphs */
 }
 
-/* ---------- Global Reset ---------- */
+/* ------------------------------------------------ Global Reset -------------------------------------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,7 +26,7 @@ body {
   padding-top:73px;
 }
 
-/* ---------- Navbar ---------- */
+/* ------------------------------------------------------- Navbar ------------------------------------------------------- */
 .navbar {
   background: var(--navbar-bg);
   position: fixed;
@@ -71,35 +71,13 @@ h2{
   color: var(--primary-hover);
 }
 
-/* Hamburger menu for mobile */
 .hamburger {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: var(--navbar-bg);
-    padding: 20px;
-    border-radius: 8px;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .hamburger {
-    display: flex;
-    justify-content: space-between;
-    color: var(--primary);
-  }
-}
-
-/* ---------- Hero Section ---------- */
+/* ----------------------------------------------------- Hero Section ------------------------------------------------------- */
 .carousel {
   position: relative;
   width: 100%;
@@ -160,12 +138,9 @@ h2{
 
 .hero-btn {
   padding: 12px 25px;
-  background: var(--primary);
   color: white;
   font-weight: bold;
-  border-radius: 6px;
   text-decoration: none;
-  transition: background 0.3s;
 }
 
 .carousel-control {
@@ -210,76 +185,74 @@ h2{
   background:var(--primary);
 }
 
-/* ---------- Hero Section Responsive ---------- */
-@media (max-width: 1024px) {
-  .carousel {
-    height: 60vh;
-  }
-
-  .hero h1, .hero-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero p, .hero-content p {
-    font-size: 1.1rem;
-  }
+/* ------------------------------------------- Shared styles ------------------------------------------------------------- */
+button,
+.hero-btn,
+.pledge-btn,
+.approve-btn,
+.reject-btn,
+.create-btn,
+.admin-table button,
+.delete-btn,
+.profile-container .btn,
+.payment-form button,
+.contact-form button,
+#createForm button,
+#profileForm button,
+.campaign-actions .edit-btn,
+.campaign-actions .delete-btn,
+.admin-table .ban-btn,
+.admin-table .unban-btn,
+.edit-btn{
+  display: inline-block;
+  background:var(--primary);
+  padding: 8px 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: white;
+  margin: 5px 3px;
 }
 
-@media (max-width: 768px) {
-  .carousel {
-    height: 50vh;
-  }
-
-  .hero h1, .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero p, .hero-content p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-
-  .hero-btn {
-    padding: 10px 20px;
-    font-size: 0.95rem;
-  }
-
-  .carousel-control {
-    font-size: 1.5rem;
-    padding: 6px;
-  }
+button:hover,
+.approve-btn:hover,
+.admin-table .approve-btn:hover,
+.admin-table .unban-btn:hover,
+.approve-btn:hover,
+.pledge-btn:hover,
+.profile-container .btn:hover,
+.payment-form button:hover,
+.contact-form button:hover,
+.hero-btn:hover,
+.create-btn:hover,
+#createForm button:hover,
+#profileForm button:hover,
+.edit-btn:hover {
+  background: var(--primary-hover);
 }
 
-@media (max-width: 480px) {
-  .carousel {
-    height: 40vh;
-  }
-
-  .hero-content {
-    padding: 10px;
-  }
-
-  .hero h1, .hero-content h1 {
-    font-size: 1.4rem;
-  }
-
-  .hero p, .hero-content p {
-    font-size: 0.9rem;
-  }
-
-  .hero-btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
-
-  .carousel-indicators {
-    gap: 6px;
-  }
-
-  .carousel-indicators span {
-    width: 8px;
-    height: 8px;
-  }
+.auth-form input:focus, 
+.create-form input:focus,
+.create-form textarea:focus,
+.filter-bar select:focus,
+.filter-bar input:focus,
+.admin-search:focus,
+#profileForm input:focus,
+#createForm input:focus,
+#createForm textarea:focus,
+#createForm select:focus,
+.profile-container input:focus,
+.profile-container textarea:focus,
+.profile-container select:focus,
+.contact-form input:focus,
+.contact-form textarea:focus,
+.search-container input:focus,
+.filter-bar input:focus,
+.filter-bar select:focus   {
+  border-color: var(--primary);
+  outline: none;
 }
 
 /* -------------------------------------Campaigns Section ------------------------------------------------------------ */
@@ -297,28 +270,8 @@ h2{
 
 .edit-btn, .delete-btn {
   padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
   font-size: 0.9rem;
   transition: 0.3s;
-  color: white;
-}
-
-.edit-btn {
-  background-color: var(--primary);
-}
-
-.delete-btn {
-  background-color: #ef4444;
-}
-
-.edit-btn:hover {
-  background-color:var(--primary-hover);
-}
-
-.delete-btn:hover {
-  background-color: #dc2626;
 }
 
 .campaigns-section h2 {
@@ -347,11 +300,6 @@ h2{
   transition: border 0.3s, box-shadow 0.3s;
 }
 
-.search-container input:focus {
-  border-color: var(--primary-hover);
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-}
-
 .campaigns-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -365,9 +313,11 @@ h2{
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .campaign-card:hover {
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
@@ -415,12 +365,6 @@ h2{
   min-width: 180px;
 }
 
-.filter-bar input:focus,
-.filter-bar select:focus {
-  border-color: var(--navbar-bg);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-}
-
 .filter-bar input {
   flex: 2;
 }
@@ -429,18 +373,6 @@ h2{
   flex: 1;
   background: #fff;
   cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-bar input,
-  .filter-bar select {
-    width: 100%;
-  }
 }
 
 /* -------------------------------------------------- Progress Bar ---------------------------------------------------------- */
@@ -460,58 +392,9 @@ h2{
   transition: width 0.4s ease-in-out;
 }
 
-/* ---------- Buttons ---------- */
-button,
-.pledge-btn,
-.approve-btn,
-.reject-btn,
-.create-btn,
-.admin-table button,
-.approve-btn,
-.reject-btn,
-.delete-btn,
-.pledge-btn,
-.profile-container .btn,
-.payment-form button,
-.contact-form button  {
-  display: inline-block;
-  background:var(--primary);
-  padding: 8px 15px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  color: white;
-  margin: 5px 3px;
-}
-
-.reject-btn {
-  background: #EF4444;
-}
-
-.reject-btn:hover {
-  background: #B91C1C; 
-}
-
-button:hover,
-.approve-btn:hover,
-.admin-table .approve-btn:hover,
-.admin-table .unban-btn:hover,
-.approve-btn:hover,
-.pledge-btn:hover,
-.profile-container .btn:hover,
-.payment-form button:hover,
-.contact-form button:hover,
-.hero-btn:hover,
-.create-btn:hover  {
-  background: var(--primary-hover);
-}
-
 .approve-btn {
-  color: #fff;
-  padding: 8px 14px;
   font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
   margin-right: 5px;
 }
 
@@ -521,9 +404,8 @@ button:hover,
 
 .reject-btn {
   background: #EF4444;
-  color: #fff;
-  padding: 8px 14px;
   font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
   margin-right: 5px;
 }
 
@@ -534,6 +416,7 @@ button:hover,
 .delete-btn {
   background: #dc3545;
   padding: 6px 12px;
+  transition: 0.3s;
 }
 
 .delete-btn:hover {
@@ -563,7 +446,7 @@ button:hover,
   background: #f8f9fa;
 }
 
-/* ---------- Forms (Login / Register / Create) ---------- */
+/* -------------------------------------------------------------- Forms ----------------------------------------- */
 .auth-container, .create-container {
   max-width: 400px;
   margin: 60px auto;
@@ -596,16 +479,7 @@ button:hover,
   transition: border 0.2s;
 }
 
-.auth-form input:focus, 
-.create-form input:focus,
-.create-form textarea:focus,
-.filter-bar select:focus,
-.filter-bar input:focus,
-.admin-search:focus {
-  border-color: var(--primary);
-}
-
-/* ---------------------------------------- Campaign Form --------------------------------------------------------- */
+/* ------------------------------------------------------ Campaign Form --------------------------------------------------------- */
 .form-container {
   display: flex;
   justify-content: center;
@@ -643,13 +517,6 @@ button:hover,
   font-size: 1rem;
 }
 
-.campaign-form input:focus,
-.campaign-form textarea:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
-}
-
 .campaign-form textarea {
   min-height: 120px;
   resize: vertical;
@@ -660,10 +527,9 @@ button:hover,
   width: 100%;
   padding: 12px;
   font-size: 1.1rem;
-  border-radius: 8px;
 }
 
-/* ================= Profile Page ================= */
+/* --------------------------------------------------------- Profile Page --------------------------------------- */
 .profile-container {
   max-width: 1100px;
   margin: 60px auto;
@@ -717,25 +583,12 @@ button:hover,
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.95rem;
-}
-
-#profileForm input:focus {
-  border-color: var(--primary);
-  outline: none;
+  transition: border 0.3s;
 }
 
 #profileForm button {
-  background: var(--primary);
-  color: #fff;
   padding: 12px;
-  border: none;
-  border-radius: 8px;
   font-size: 1rem;
-  cursor: pointer;
-}
-
-#profileForm button:hover {
-  background: var(--primary-hover);
 }
 
 #createForm {
@@ -756,27 +609,12 @@ button:hover,
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.95rem;
-}
-
-#createForm input:focus,
-#createForm textarea:focus,
-#createForm select:focus {
-  border-color: var(--primary);
-  outline: none;
+  transition: border 0.3s;
 }
 
 #createForm button {
-  background: var(--primary);
-  color: #fff;
   padding: 14px;
-  border: none;
-  border-radius: 8px;
   font-size: 1rem;
-  cursor: pointer;
-}
-
-#createForm button:hover {
-  background: var(--primary-hover);
 }
 
 #profileCampaigns {
@@ -790,6 +628,11 @@ button:hover,
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-6px);
 }
 
 .campaign-card img {
@@ -811,20 +654,10 @@ button:hover,
 
 .campaign-actions .edit-btn {
   background: #3b82f6;
-  color: #fff;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .campaign-actions .delete-btn {
   background: #ef4444;
-  color: #fff;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .campaign-actions .edit-btn:hover {
@@ -855,7 +688,7 @@ button:hover,
   font-size: 0.95rem;
 }
 
-/* ---------------------------------------- Admin Dashboard ------------------------------------------------------ */
+/* ------------------------------------------------------- Admin Dashboard ------------------------------------------------------ */
 .admin-section {
   max-width: 1000px;
   margin: 120px auto 50px auto;
@@ -880,14 +713,9 @@ button:hover,
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-.admin-search:focus {
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
-  outline: none;
-}
-
-/* ---------------------------------------------Admin Tables ----------------------------------------------------- */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -916,14 +744,8 @@ button:hover,
   font-weight: 600;
 }
 
-.admin-table .approve-btn {
-  background: var(--primary);
-  color: white;
-}
-
 .admin-table .reject-btn {
   background: #ef4444;
-  color: white;
 }
 
 .admin-table .reject-btn:hover {
@@ -932,24 +754,26 @@ button:hover,
 
 .admin-table .ban-btn {
   background: #f59e0b;
-  color: white;
 }
 
 .admin-table .ban-btn:hover {
   background: #d97706;
 }
 
-.admin-table .unban-btn {
-  background: var(--primary);
-  color: white;
+.approve-btn:hover {
+  transform: scale(1.05);
 }
 
 .pledge-btn {
-  color: #fff;
   padding: 10px 18px;
   font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
   display: inline-block;
   margin-top: 10px;
+}
+
+.pledge-btn:active {
+  transform: scale(0.95); 
 }
 
 /* ------------------------------------------------- Profile Page ------------------------------------------------------------- */
@@ -1000,13 +824,7 @@ button:hover,
   border-radius: 8px;
   font-size: 1rem;
   width: 100%;
-}
-
-.profile-container input:focus,
-.profile-container textarea:focus,
-.profile-container select:focus {
-  border-color: var(--primary);
-  outline: none;
+  transition: border 0.2s;
 }
 
 .profile-container .btn {
@@ -1014,6 +832,7 @@ button:hover,
   padding: 12px;
   border-radius: 8px;
   font-size: 1rem;
+  transition: background 0.3s;
   text-align: center;
 }
 
@@ -1030,10 +849,12 @@ button:hover,
   border-radius: 10px;
   padding: 15px;
   border: 1px solid #e5e7eb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .campaign-card:hover,
 .pledge-card:hover {
+  transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
@@ -1048,12 +869,6 @@ button:hover,
   color: #444;
 }
 
-/* ------------------------------------------------ Responsive ------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .profile-container {
-    padding: 15px;
-  }
-}
 /* ------------------------------------------------- Payment ---------------------------------------------------------------- */
 .payment-container {
   max-width: 600px;
@@ -1156,7 +971,7 @@ button:hover,
   color: var(--text-muted);
 }
 
-/* ------------------------------------------- Contact Info List --------------------------------------------------- */
+/* ---------------------------------------------------------- Contact Info List --------------------------------------------------- */
 .page-container ul {
   list-style: none;
   padding: 0;
@@ -1180,7 +995,7 @@ button:hover,
   text-decoration: underline;
 }
 
-/* ---------- Contact Form ---------- */
+/* ------------------------------------------------- Contact Form ------------------------------------------------------------------ */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -1199,31 +1014,14 @@ button:hover,
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
 .contact-form button {
   padding: 12px 18px;
   color: white;
   border-radius: 8px;
-}
-
-/* ------------------------------------------------ Responsive --------------------------------------------------------- */
-@media (max-width: 600px) {
-  .page-container {
-    margin: 100px 15px;
-    padding: 20px;
-  }
-
-  .page-container h2 {
-    font-size: 1.5rem;
-  }
+  transition: background 0.3s;
 }
 /* ----------------------------------------------------testimonial-----------------------------------------------------------*/
 .testimonials {
@@ -1251,10 +1049,12 @@ button:hover,
   padding: 25px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .testimonial:hover {
+  transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
@@ -1339,6 +1139,12 @@ button:hover,
   width: 25px;
   height: 25px;
   filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.footer-social img:hover {
+  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(80%) saturate(344%) hue-rotate(121deg) brightness(90%) contrast(92%);
 }
 
 .footer-bottom {
@@ -1356,4 +1162,124 @@ button:hover,
   color: #aaa;
 }
 
+/* ------------------------------------------------ Responsive --------------------------------------------------------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: var(--navbar-bg);
+    padding: 20px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary);
+  }
+}
 
+@media (max-width: 1024px) {
+  .carousel {
+    height: 60vh;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 50vh;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  .carousel-control {
+    font-size: 1.5rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 40vh;
+  }
+
+  .hero-content {
+    padding: 10px;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero p, .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .carousel-indicators {
+    gap: 6px;
+  }
+
+  .carousel-indicators span {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-bar input,
+  .filter-bar select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    margin: 100px 15px;
+    padding: 20px;
+  }
+
+  .page-container h2 {
+    font-size: 1.5rem;
+  }
+}

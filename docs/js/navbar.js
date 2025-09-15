@@ -5,26 +5,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginLink = document.getElementById("loginLink");
   const registerLink = document.getElementById("registerLink");
   const logoutBtn = document.getElementById("logoutBtn");
-  const homeLink = document.getElementById("homeLink");
   const profileLink = document.getElementById("profileLink");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const homeLink = document.getElementById("homeLink");
+
+  const currentPage = window.location.pathname.split("/").pop();
 
   if (token && user) {
     if (loginLink) loginLink.style.display = "none";
     if (registerLink) registerLink.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
-    if (profileLink) profileLink.style.display = "inline-block";
 
-    if (homeLink) {
-      if (user.role === "admin") {
-        homeLink.setAttribute("href", "admin.html");
-      } else {
-        homeLink.setAttribute("href", "index.html");
-      }
+    if (user.role === "admin") {
+      if (dashboardLink) dashboardLink.style.display = "inline-block";
+      if (profileLink) profileLink.style.display = "none";
+    } else {
+      if (profileLink) profileLink.style.display = "inline-block";
+      if (dashboardLink) dashboardLink.style.display = "none";
     }
   } else {
     if (logoutBtn) logoutBtn.style.display = "none";
     if (profileLink) profileLink.style.display = "none";
-    if (homeLink) homeLink.setAttribute("href", "index.html");
+    if (dashboardLink) dashboardLink.style.display = "none";
+
+    if (currentPage === "index.html") {
+      if (loginLink) loginLink.style.display = "inline-block";
+      if (registerLink) registerLink.style.display = "inline-block";
+    } else {
+      if (loginLink) loginLink.style.display = "none";
+      if (registerLink) registerLink.style.display = "none";
+    }
   }
 
   logoutBtn?.addEventListener("click", () => {

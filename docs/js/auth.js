@@ -49,14 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*///////////////////////////////////////////////////////  Login //////////////////////////////////////////////////////////*/
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+ const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
 
+    try {
+      // Login request
       const res = await fetch(`${API}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -65,25 +67,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
 
-      if (res.ok) {
-        localStorage.setItem("token", data.accessToken);
-
-        const userRes = await fetch(`${API}/600/users/${data.user.id}`, {
-          headers: { Authorization: `Bearer ${data.accessToken}` }
-        });
-        const freshUser = await userRes.json();
-        localStorage.setItem("user", JSON.stringify(freshUser));
-
-        Swal.fire({
-          icon: "success",
-          title: "Login Successful ",
-          text: "Welcome back!"
-        }).then(() => {
-          window.location.href = freshUser.role === "admin" ? "admin.html" : "profile.html";
-        });
-      } else {
+      if (!res.ok) {
         Swal.fire("Error", "Invalid login credentials", "error");
+        return;
       }
-    });
-  }
+
+      // Get user details
+      const userRes = await fetch(`${API}/600/users/${data.user.id}`, {
+        headers: { Authorization: `Bearer ${data.accessToken}` }
+      });
+      const freshUser = await userRes.json();
+
+      // Check if user is banned
+      if (!freshUser.isActive) {
+        Swal.fire({
+          icon: "error",
+          title: "Access Denied",
+          text: "Your account has been banned. You cannot log in."
+        });
+        return;
+      }
+
+      // Save token & user
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("user", JSON.stringify(freshUser));
+
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "Welcome back!"
+      }).then(() => {
+        window.location.href = freshUser.role === "admin" ? "admin.html" : "profile.html";
+      });
+
+    } catch (err) {
+      console.error("Login error:", err);
+      Swal.fire("Error", "Something went wrong. Please try again.", "error");
+    }
+  });
+}
 });
